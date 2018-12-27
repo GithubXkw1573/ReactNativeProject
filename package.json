@@ -10,6 +10,7 @@
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.3",
 		"react-native-image-picker": "^0.27.2",
+		"react-native-linear-gradient": "^2.5.3",
 		"react-navigation": "^2.17.0"
 	},
 	"devDependencies": {
