@@ -24,9 +24,11 @@ export default class studyList extends Component {
     }
 
     jumpToDetail(id) {
-        Alert.alert('点击行:'+id);
-        // const { navigate } =this.props.navigation;
-        // navigate('Details', this.props.item);
+        // Alert.alert('点击行:'+id);
+        const { navigate } = this.props.navigation;
+        if (id === 3) {
+            navigate('LoadingToast');
+        }
     }
 
     componentDidMount() {

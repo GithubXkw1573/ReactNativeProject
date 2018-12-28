@@ -10,6 +10,7 @@ import HomePage from './Home/Home.js';
 import MovieList from "./movies/MovieList";
 import MovieDetail from "./movies/MovieDetail";
 import StudyList from './Study/studyList';
+import LoadingToast from './Study/LoadingToast';
 import {StackNavigator} from 'react-navigation';
 import './Public/Global.js';
 
@@ -27,6 +28,9 @@ const KevinReactNativeProject = StackNavigator({
     },
     StudyList:{
         screen:StudyList,
+    },
+    LoadingToast:{
+        screen:LoadingToast,
     },
 },
 {
