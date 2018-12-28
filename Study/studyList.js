@@ -43,7 +43,7 @@ export default class studyList extends Component {
                 },
                 {
                     id:3,
-                    name: 'Loading框',
+                    name: 'Toast&Loading框',
                 },
                 {
                     id:4,

@@ -9,63 +9,64 @@ import {
   Text,
 } from 'react-native';
 
-import Toast from 'react-native-root-toast';
-
+import {Toast} from '../Public/Toast';
 import {Loading} from '../Public/Loading';
 
 
 class LoadingToast extends Component {
 
-show() {
-	let toast = Toast.show('This is a message', {
-    duration: 1500, // toast显示时长(LONG,SHORT,自定义毫秒数)
-    position: Toast.positions.CENTER, // toast位置(BOTTOM,CENTER,TOP)
-    shadow: true, // toast是否出现阴影
-    animation: true, // toast显示/隐藏的时候是否需要使用动画过渡
-    hideOnPress: true, // 是否可以通过点击事件对toast进行隐藏
-    delay: 0, // toast显示的延时
-    style: styles.toastStyle,
-    onShow: () => { 
-        // toast出现回调（动画开始时）
-    },
-    onShown: () => {
-        // toast出现回调（动画结束时）
-    },
-    onHide: () => {
-        // toast隐藏回调（动画开始时）
-    },
-    onHidden: () => {
-        // toast隐藏回调（动画结束时）
+	static navigationOptions = {
+        title: 'ToastLoading',
     }
-	});
-}
 
-showlong() {
-	Toast.show('我是一个很长的提示消息，我还可以换行，我可以定义显示的毫秒数，我还可以显示上面还是下面中间等', {
-    duration: Toast.durations.LONG, // toast显示时长(LONG,SHORT,自定义毫秒数)
-    position: Toast.positions.CENTER, // toast位置(BOTTOM,CENTER,TOP)
-    shadow: true, // toast是否出现阴影
-    animation: true, // toast显示/隐藏的时候是否需要使用动画过渡
-    hideOnPress: true, // 是否可以通过点击事件对toast进行隐藏
-    delay: 0, // toast显示的延时
-    style: styles.toastStyle,
-    onShow: () => { 
-        // toast出现回调（动画开始时）
-    },
-    onShown: () => {
-        // toast出现回调（动画结束时）
-    },
-    onHide: () => {
-        // toast隐藏回调（动画开始时）
-    },
-    onHidden: () => {
-        // toast隐藏回调（动画结束时）
+toast(type) {
+    switch (type) {
+      case 'show':
+        Toast.show('这是show类型')
+        break
+      case 'showLong':
+        Toast.showLong('这是showLong类型')
+        break
+      case 'showSuccess':
+        Toast.showSuccess('这是showSuccess类型')
+        break
+      case 'showSuccessCallback':
+        Toast.showSuccess('这是showSuccessCallback类型', () => alert('回调成功！'))
+        break
+      case 'showLongSuccess':
+        Toast.showLongSuccess('这是showLongSuccess类型')
+        break
+      case 'showLongSuccessCallback':
+        Toast.showLongSuccess('这是showLongSuccessCallback类型', () => alert('回调成功！'))
+        break
+      case 'showWarning':
+        Toast.showWarning('这是showWarning类型')
+        break
+      case 'showError':
+        Toast.showError('这是showError类型')
+        break
     }
-	});
-}
+  }
 
-loading() {
-	Loading.show();
+loading(type) {
+	
+	switch (type) {
+      case 'show':
+        Loading.show();
+        setTimeout(function(){
+        	Loading.hidden();
+        }, 3000);
+        break
+      case 'showText':
+        Loading.showText('正在加载...');
+        setTimeout(function(){
+        	Loading.hidden();
+        }, 3000);
+        break
+      case 'hidden':
+        Loading.hidden();
+        break
+    }
 }
 
   render() {
@@ -74,10 +75,18 @@ loading() {
       <Text style={styles.titleStyle}>
         Toast
       </Text>
-      <View style={styles.btnStyle}><Button onPress={()=>this.show()} title='show' color='black'/></View>
-      <View style={styles.btnStyle}><Button onPress={()=>this.showlong()} title='showLong' color='black'/></View>
-      <View style={styles.btnStyle}><Button onPress={()=>this.loading()} title='showSuccess' color='black'/></View>
-      <View style={styles.btnStyle}><Button onPress={()=>this.show()} title='showSuccess带回调函数' color='black'/></View>
+      <View style={styles.btnStyle}><Button onPress={()=>this.toast('show')} title='show' color='black'/></View>
+      <View style={styles.btnStyle}><Button onPress={()=>this.toast('showLong')} title='showLong' color='black'/></View>
+      <View style={styles.btnStyle}><Button onPress={()=>this.toast('showSuccess')} title='showSuccess' color='black'/></View>
+      <View style={styles.btnStyle}><Button onPress={()=>this.toast('showSuccessCallback')} title='showSuccess带回调函数' color='black'/></View>
+      <View style={styles.btnStyle}><Button onPress={()=>this.toast('showError')} title='showError' color='black'/></View>
+      
+      <Text style={styles.titleStyle}>
+        Loading
+      </Text>
+      <View style={styles.btnStyle}><Button onPress={()=>this.loading('show')} title='show' color='black'/></View>
+      <View style={styles.btnStyle}><Button onPress={()=>this.loading('showText')} title='showText' color='black'/></View>
+      <View style={styles.btnStyle}><Button onPress={()=>this.loading('hidden')} title='hidden' color='black'/></View>
       </View>
     );
   }

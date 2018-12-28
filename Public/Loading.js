@@ -2,7 +2,7 @@
  * Created by guangqiang on 2017/12/12.
  */
 import React, {Component} from 'react'
-import {View, StyleSheet, ActivityIndicator, Dimensions} from 'react-native'
+import {View, StyleSheet, ActivityIndicator, Dimensions, Text} from 'react-native'
 import RootSiblings from 'react-native-root-siblings'
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -16,6 +16,17 @@ const Loading = {
       <View style={styles.maskStyle}>
         <View style={styles.backViewStyle}>
           <ActivityIndicator size="large" color="white" />
+        </View>
+      </View>
+    )
+  },
+
+  showText: (msg) => {
+    sibling = new RootSiblings(
+      <View style={styles.maskStyle}>
+        <View style={styles.backViewStyle}>
+          <ActivityIndicator size="large" color="white" />
+          <Text style={styles.textStyle}>{msg}</Text>
         </View>
       </View>
     )
@@ -45,6 +56,12 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 5,
+    },
+    textStyle: {
+      fontSize: 16,
+      color: 'white',
+      paddingTop:10,
+      textAlign: 'center',
     }
   }
 )
