@@ -20,10 +20,35 @@ export default class KevinReactNativeProject extends Component {
     }
 
     componentDidMount() {
-         // Alert.alert(global.platform.OS);
-         // let httpManager = HttpClient.shareInstance();
-         // httpManager.setName('xukaiwei');
+         // Alert.alert(DeviceInfo.getVersion());
+         var httpManager = HttpClient.shareInstance();
+         httpManager.setName('xukaiwei');
          // Alert.alert(httpManager.getName());
+         var param = {
+            pageSize : 10,
+            areaSearch : {
+                levelCount : 2,
+                adcode : 320100
+            },
+            longitude : 118.8275154622396,
+            conditionSearch : {
+            },
+            categoryId : 1282,
+            latitude : 31.86814236111111,
+            ranking : 1,
+            pageNum : 1
+        };
+        httpManager.request('/services/list/getServiceSearchList', param)
+        .then(function(response){
+            console.log(response);
+            // var result = response._bodyInit;
+            Alert.alert(JSON.stringify(response.success));
+        })
+        .catch(function(response){
+            var respJson = JSON.stringify(response.success);
+            // Alert.alert(respJson);
+        });
+
     }
 
     jump() {
