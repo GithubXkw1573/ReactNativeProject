@@ -10,6 +10,7 @@ import { AppRegistry, Text, View, Button, Alert,Image,ScrollView, StyleSheet } f
 // import MovieDetail from "./movies/MovieDetail";
 // import {StackNavigator} from 'react-navigation';
 import ImagePicker from 'react-native-image-picker';
+import HttpClient from '../Public/HttpClient';
 
 var home = require('react-native').NativeModules.HomeViewController;
 
@@ -20,6 +21,9 @@ export default class KevinReactNativeProject extends Component {
 
     componentDidMount() {
          // Alert.alert(global.platform.OS);
+         // let httpManager = HttpClient.shareInstance();
+         // httpManager.setName('xukaiwei');
+         // Alert.alert(httpManager.getName());
     }
 
     jump() {
