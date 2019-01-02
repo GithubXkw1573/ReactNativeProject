@@ -11,6 +11,7 @@ import MovieList from "./movies/MovieList";
 import MovieDetail from "./movies/MovieDetail";
 import StudyList from './Study/studyList';
 import LoadingToast from './Study/LoadingToast';
+import PickerView from './Study/PickerView';
 import {StackNavigator} from 'react-navigation';
 import './Public/Global.js';
 
@@ -32,6 +33,9 @@ const KevinReactNativeProject = StackNavigator({
     LoadingToast:{
         screen:LoadingToast,
     },
+    Picker:{
+        screen:PickerView,
+    }
 },
 {
     initialRouteName: 'Home',

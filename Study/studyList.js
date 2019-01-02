@@ -28,6 +28,8 @@ export default class studyList extends Component {
         const { navigate } = this.props.navigation;
         if (id === 3) {
             navigate('LoadingToast');
+        }else if(id == 2) {
+            navigate('Picker');
         }
     }
 
