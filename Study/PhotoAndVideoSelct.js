@@ -50,6 +50,7 @@ class PhotoAndVideoSelct extends Component {
 	  	imageSource1:null,
 	  	imageSource2:null,
 	  	imageSource3:null,
+	  	images:[],
 	  };
 	}
 
@@ -60,6 +61,8 @@ class PhotoAndVideoSelct extends Component {
 			this.pickerLibray();
 		}else if(type === 'single_take') {
 			this.takePhoto();
+		}else if(type === 'mutiple_pick') {
+			this.mutiPicker();
 		}
 	}
 
@@ -133,6 +136,11 @@ class PhotoAndVideoSelct extends Component {
 		});
   	}
 
+  	//多选
+  	mutiPicker() {
+  		
+  	}
+
   render() {
     return (
       <View style={styles.container}>
@@ -169,6 +177,30 @@ class PhotoAndVideoSelct extends Component {
                 </View>
             </TouchableOpacity>
       	</View>
+
+      	<Text style={styles.titleStyle}>照片（多选）</Text>
+      	<View>
+      		{this.state.images.length > 0 ? (
+      			<View style={styles.singleSectionStyle}>
+      			{this.state.images.map((item,index)=>{
+      				return (
+      					<View style={styles.imageContainer}>
+      						<Image style={styles.imgStyle} resizeMode='cover' source={item} />
+                		</View>
+      				);
+      			})}
+      			</View>
+      		):(
+      			<View style={styles.mutiSectionStyle}>
+      			<TouchableOpacity onPress={() => this.choosePhoto('mutiple_pick')}>
+      				<View style={styles.imageContainer}>
+      					<View style={styles.imageContainer}><Icon name='add' size={40} color={'green'}/>
+	      				<Text style={styles.textStyle}>相册/多选</Text></View>
+                	</View>
+            	</TouchableOpacity>
+            	</View>
+      		)}
+      	</View>
       </View>
     );
   }
@@ -189,6 +221,12 @@ const styles = StyleSheet.create({
 		flexDirection:'row',
 		justifyContent: 'space-around',
 		marginTop: 15,
+	},
+	mutiSectionStyle: {
+		flexDirection:'row',
+		justifyContent: 'flex-start',
+		marginTop: 15,
+		marginLeft: 10,
 	},
 	imageContainer: {
 		height: itemWidth ,
