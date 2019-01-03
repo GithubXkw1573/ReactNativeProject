@@ -32,13 +32,17 @@ export default class studyList extends Component {
             navigate('Picker');
         }else if (id === 8) {
             navigate('ServiceList');
+        } else if (id === 1) {
+            navigate('TextInput');
+        } else {
+            Alert.alert('点击行:'+id);
         }
     }
 
     componentDidMount() {
         dataList = [
                 {
-                    id:1,
+                 id:1,
                     name: 'TextInput',
                 },
                 {
@@ -79,7 +83,6 @@ export default class studyList extends Component {
                 data:dataList
             });
     }
-
     render() {
         return (
             <View style={styles.container}>

@@ -13,6 +13,7 @@ import StudyList from './Study/studyList';
 import LoadingToast from './Study/LoadingToast';
 import PickerView from './Study/PickerView';
 import ServiceList from './Study/ServiceList';
+import TextInput from './Study/TextInput';
 import {StackNavigator} from 'react-navigation';
 import './Public/Global.js';
 
@@ -38,7 +39,9 @@ const KevinReactNativeProject = StackNavigator({
         screen:PickerView,
     },
     ServiceList: {
-        screen:ServiceList,
+        screen:ServiceList
+    TextInput: {
+        screen:TextInput,
     },
 },
 {
