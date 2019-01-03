@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ImagePicker from 'react-native-image-picker';
+import CropPicker from 'react-native-image-crop-picker'; 
 import '../Public/Global.js';
 import {
   StyleSheet,
@@ -10,6 +11,7 @@ import {
   TouchableOpacity,
   Text,
   Image,
+  Alert,
 } from 'react-native';
 
 let itemWidth = (global.screen.width-50)/3.0;
@@ -51,6 +53,7 @@ class PhotoAndVideoSelct extends Component {
 	  	imageSource2:null,
 	  	imageSource3:null,
 	  	images:[],
+	  	cropImages:[],
 	  };
 	}
 
@@ -63,6 +66,10 @@ class PhotoAndVideoSelct extends Component {
 			this.takePhoto();
 		}else if(type === 'mutiple_pick') {
 			this.mutiPicker();
+		}else if (type === 'take_crop') {
+			this.openCamera();
+		}else if (type === 'pick_crop') {
+			this.mutiCrop();
 		}
 	}
 
@@ -138,7 +145,63 @@ class PhotoAndVideoSelct extends Component {
 
   	//多选
   	mutiPicker() {
-  		
+  		CropPicker.openPicker({
+  			 multiple: true ,
+  			 includeBase64: false,
+  			 cropping: false ,
+  			 maxFiles: 5,
+  			 compressImageMaxWidth: 640,
+      		 compressImageMaxHeight: 480,
+      		 compressImageQuality: 0.5,
+  		}).then(images=>{
+  			console.log(images);
+  			var arr = [];  
+  			images.map((img,index)=>{
+  				arr.push({uri:img.path});
+  			});
+  			this.setState({
+	            images: arr,
+	         });
+  		}).catch(response=>{
+  			console.log(response);
+  		});
+  	}
+
+  	//裁剪
+  	mutiCrop() {
+  		var self = this;
+  		CropPicker.openPicker({
+  			 multiple: false ,
+  			 includeBase64: false,
+  			 cropping: true ,
+  			 width: 300,
+  			 height: 250,
+  			 cropperCircleOverlay: true,
+  		}).then(image=>{
+  			// console.log(image);
+  			var arr = [{uri:image.path}];
+  			self.setState({
+	            cropImages: arr,
+	         });
+  		}).catch(response=>{
+  			console.log(response);
+  		});
+  	}
+
+  	openCamera() {
+  		var self = this;
+  		CropPicker.openCamera({  
+		  width: 300,  
+		  height: 400,  
+		  cropping: true  
+		}).then(image => {  
+		  	var arr = [{uri:image.path}];
+  			self.setState({
+	            cropImages: arr,
+	        });
+		}).catch(response=>{
+  			console.log(response);
+  		});
   	}
 
   render() {
@@ -181,11 +244,13 @@ class PhotoAndVideoSelct extends Component {
       	<Text style={styles.titleStyle}>照片（多选）</Text>
       	<View>
       		{this.state.images.length > 0 ? (
-      			<View style={styles.singleSectionStyle}>
+      			<View style={styles.mutiShowSectionStyle}>
       			{this.state.images.map((item,index)=>{
       				return (
-      					<View style={styles.imageContainer}>
+      					<View key={index} style={styles.itemImage}>
+      						<TouchableOpacity onPress={() => this.choosePhoto('mutiple_pick')}>
       						<Image style={styles.imgStyle} resizeMode='cover' source={item} />
+      						</TouchableOpacity>
                 		</View>
       				);
       			})}
@@ -196,6 +261,38 @@ class PhotoAndVideoSelct extends Component {
       				<View style={styles.imageContainer}>
       					<View style={styles.imageContainer}><Icon name='add' size={40} color={'green'}/>
 	      				<Text style={styles.textStyle}>相册/多选</Text></View>
+                	</View>
+            	</TouchableOpacity>
+            	</View>
+      		)}
+      	</View>
+
+      	<Text style={styles.titleStyle}>照片（裁剪）</Text>
+      	<View>
+      		{this.state.cropImages.length > 0 ? (
+      			<View style={styles.mutiShowSectionStyle}>
+      			{this.state.cropImages.map((item,index)=>{
+      				return (
+      					<View key={index} style={styles.itemImage}>
+      						<TouchableOpacity onPress={() => this.choosePhoto('mutiple_crop')}>
+      						<Image style={styles.imgStyle} resizeMode='contain' source={item} />
+      						</TouchableOpacity>
+                		</View>
+      				);
+      			})}
+      			</View>
+      		):(
+      			<View style={styles.mutiSectionStyle}>
+      			<TouchableOpacity onPress={() => this.choosePhoto('pick_crop')}>
+      				<View style={styles.imageContainer}>
+      					<View style={styles.imageContainer}><Icon name='add' size={40} color={'green'}/>
+	      				<Text style={styles.textStyle}>裁剪圆形</Text></View>
+                	</View>
+            	</TouchableOpacity>
+            	<TouchableOpacity onPress={() => this.choosePhoto('take_crop')}>
+      				<View style={[styles.imageContainer,{marginLeft:10}]}>
+      					<View style={styles.imageContainer}><Icon name='add' size={40} color={'green'}/>
+	      				<Text style={styles.textStyle}>拍照裁剪</Text></View>
                 	</View>
             	</TouchableOpacity>
             	</View>
@@ -221,12 +318,22 @@ const styles = StyleSheet.create({
 		flexDirection:'row',
 		justifyContent: 'space-around',
 		marginTop: 15,
+		flexWrap: 'wrap',
+		marginBottom: 10,
+	},
+	mutiShowSectionStyle: {
+		flexDirection:'row',
+		justifyContent: 'flex-start',
+		marginTop: 15,
+		flexWrap: 'wrap',
+		marginBottom: 10,
 	},
 	mutiSectionStyle: {
 		flexDirection:'row',
 		justifyContent: 'flex-start',
 		marginTop: 15,
 		marginLeft: 10,
+		marginBottom: 10,
 	},
 	imageContainer: {
 		height: itemWidth ,
@@ -246,7 +353,16 @@ const styles = StyleSheet.create({
 		width: itemWidth ,
 		backgroundColor: '#f5f5f5',
 		flex: 1,
-	}
+	},
+	itemImage: {
+		height: itemWidth ,
+		width: itemWidth ,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#f5f5f5',
+		marginLeft: 10,
+		marginTop: 10,
+	},
 });
 
 
