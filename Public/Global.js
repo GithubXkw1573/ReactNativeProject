@@ -23,3 +23,7 @@ var React = require('react-native');
 var {Platform} = React;
 
 global.platform = Platform;
+
+global.backgroundColor = '#f6f6f6';
+
+global.sepLineColor = '#e6e6e6';

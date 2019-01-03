@@ -8,6 +8,8 @@ desc: 网络请求基类
 
 import DeviceInfo from 'react-native-device-info';
 
+import {Alert} from 'react-native';
+
 let instance = null;
 
 const baseUrl = 'http://service.wowoshenghuo.com';
@@ -85,6 +87,7 @@ export default class HttpClientManager {
 				resolve(respData);
 			})
 			.catch(function(error){
+				//Alert.alert('error');
 				reject(error);
 			});
 		});
