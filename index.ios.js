@@ -40,6 +40,7 @@ const KevinReactNativeProject = StackNavigator({
     },
     ServiceList: {
         screen:ServiceList
+    },
     TextInput: {
         screen:TextInput,
     },
