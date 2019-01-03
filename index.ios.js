@@ -14,6 +14,7 @@ import LoadingToast from './Study/LoadingToast';
 import PickerView from './Study/PickerView';
 import ServiceList from './Study/ServiceList';
 import TextInput from './Study/TextInput';
+import PhotoAndVideoSelct from './Study/PhotoAndVideoSelct';
 import {StackNavigator} from 'react-navigation';
 import './Public/Global.js';
 
@@ -43,6 +44,9 @@ const KevinReactNativeProject = StackNavigator({
     },
     TextInput: {
         screen:TextInput,
+    },
+    PhotoAndVideoSelct: {
+        screen:PhotoAndVideoSelct,
     },
 },
 {

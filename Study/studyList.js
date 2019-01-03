@@ -34,6 +34,8 @@ export default class studyList extends Component {
             navigate('ServiceList');
         } else if (id === 1) {
             navigate('TextInput');
+        }else if(id === 5) {
+            navigate('PhotoAndVideoSelct');
         } else {
             Alert.alert('点击行:'+id);
         }
