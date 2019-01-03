@@ -9,7 +9,16 @@ import { AppRegistry, Text, View, Button, Alert,Image,ScrollView, StyleSheet } f
 import HomePage from './Home/Home.js';
 import MovieList from "./movies/MovieList";
 import MovieDetail from "./movies/MovieDetail";
+import StudyList from './Study/studyList';
+import LoadingToast from './Study/LoadingToast';
+import PickerView from './Study/PickerView';
+import ServiceList from './Study/ServiceList';
+import TextInput from './Study/TextInput';
+import LKLocation from './Study/LKLocation';
+import LKAnimation from './Study/LKAnimation';
+import PhotoAndVideoSelct from './Study/PhotoAndVideoSelct';
 import {StackNavigator} from 'react-navigation';
+import './Public/Global.js';
 
 
 //页面路由
@@ -22,7 +31,31 @@ const KevinReactNativeProject = StackNavigator({
     },
     Details:{
         screen:MovieDetail,
-    }
+    },
+    StudyList:{
+        screen:StudyList,
+    },
+    LoadingToast:{
+        screen:LoadingToast,
+    },
+    Picker:{
+        screen:PickerView,
+    },
+    ServiceList: {
+        screen:ServiceList
+    },
+    TextInput: {
+        screen:TextInput,
+    },
+    LKLocation: {
+        screen:LKLocation,
+    },
+    LKAnimation: {
+        screen: LKAnimation,
+    },
+    PhotoAndVideoSelct: {
+        screen:PhotoAndVideoSelct,
+    },
 },
 {
     initialRouteName: 'Home',
