@@ -1279,21 +1279,21 @@ var _TextInput = require(732                ); // 732 = ./Study/TextInput
 
 var _TextInput2 = babelHelpers.interopRequireDefault(_TextInput);
 
-var _LKLocation = require(734                 ); // 734 = ./Study/LKLocation
+var _LKLocation = require(733                 ); // 733 = ./Study/LKLocation
 
 var _LKLocation2 = babelHelpers.interopRequireDefault(_LKLocation);
 
-var _LKAnimation = require(735                  ); // 735 = ./Study/LKAnimation
+var _LKAnimation = require(734                  ); // 734 = ./Study/LKAnimation
 
 var _LKAnimation2 = babelHelpers.interopRequireDefault(_LKAnimation);
 
-var _PhotoAndVideoSelct = require(736                         ); // 736 = ./Study/PhotoAndVideoSelct
+var _PhotoAndVideoSelct = require(735                         ); // 735 = ./Study/PhotoAndVideoSelct
 
 var _PhotoAndVideoSelct2 = babelHelpers.interopRequireDefault(_PhotoAndVideoSelct);
 
 var _reactNavigation = require(425               ); // 425 = react-navigation
 
-require(733                 ); // 733 = ./Public/Global.js
+require(739                 ); // 739 = ./Public/Global.js
 
 var KevinReactNativeProject = (0, _reactNavigation.StackNavigator)({
     Home: {
@@ -72157,7 +72157,7 @@ var styles = _reactNative.StyleSheet.create({
     }
 
 });
-}, 734, null, "KevinReactNativeProject/Study/LKLocation.js");
+}, 733, null, "KevinReactNativeProject/Study/LKLocation.js");
 __d(/* KevinReactNativeProject/Study/LKAnimation.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -72254,7 +72254,7 @@ var ScringView = function (_React$Component2) {
                         transform: [{ scale: this.state.bounceValue }] }),
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 56
+                        lineNumber: 64
                     }
                 },
                 this.props.children
@@ -72264,20 +72264,224 @@ var ScringView = function (_React$Component2) {
     return ScringView;
 }(_react2.default.Component);
 
-var LKLayoutView = function (_Component) {
-    babelHelpers.inherits(LKLayoutView, _Component);
+var ResponderView = function (_Component) {
+    babelHelpers.inherits(ResponderView, _Component);
+
+    function ResponderView(props) {
+        babelHelpers.classCallCheck(this, ResponderView);
+
+        var _this3 = babelHelpers.possibleConstructorReturn(this, (ResponderView.__proto__ || Object.getPrototypeOf(ResponderView)).call(this, props));
+
+        _this3.state = {
+            transY: new _reactNative.Animated.Value(0),
+            opacity: new _reactNative.Animated.Value(1)
+        };
+        _this3._panResponder = {};
+        return _this3;
+    }
+
+    babelHelpers.createClass(ResponderView, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this4 = this;
+
+            this._panResponder = _reactNative.PanResponder.create({
+                onStartShouldSetPanResponder: this._returnTrue.bind(this),
+                onMoveShouldSetPanResponder: this._returnTrue.bind(this),
+                onPanResponderEnd: this._stopPanAction.bind(this),
+
+                onPanResponderMove: _reactNative.Animated.event([null, {
+                    dx: this.state.transY
+                }]),
+                onPanResponderGrant: function onPanResponderGrant() {
+                    _reactNative.Animated.timing(_this4.state.opacity, {
+                        toValue: _this4.state.transY.interpolate({
+                            inputRange: [-100, 0, 100],
+                            outputRange: [0, 1, 0]
+                        }),
+                        duration: 0
+                    }).start();
+                }
+            });
+        }
+    }, {
+        key: '_stopPanAction',
+        value: function _stopPanAction(e, gestureState) {
+            console.log(e, gestureState);
+            this.state.transY.setValue(0);
+            this.state.opacity.setValue(1);
+            this.setState({ transY: this.state.transY, opacity: this.state.opacity });
+            return true;
+        }
+    }, {
+        key: '_returnTrue',
+        value: function _returnTrue(e, gestureState) {
+            console.log(e, gestureState);
+            return true;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                _reactNative.View,
+                { style: babelHelpers.extends({}, this.props.style), __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 126
+                    }
+                },
+                _react2.default.createElement(
+                    _reactNative.Animated.View,
+                    {
+                        style: {
+                            width: 100,
+                            height: 50,
+                            opacity: this.state.opacity,
+                            transform: [{ translateX: this.state.transY }],
+                            backgroundColor: 'red'
+                        },
+
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 127
+                        }
+                    },
+                    _react2.default.createElement(
+                        _reactNative.Text,
+                        { style: { color: 'white', lineHeight: 50 }, __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 137
+                            }
+                        },
+                        '\u8FD9\u4E2A\u662F\u52A8\u753B\u6548\u679C'
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactNative.TouchableOpacity,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 139
+                        }
+                    },
+                    _react2.default.createElement(
+                        _reactNative.View,
+                        babelHelpers.extends({ style: { width: 100, height: 100, backgroundColor: 'black' } }, this._panResponder.panHandlers, {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 140
+                            }
+                        }),
+                        _react2.default.createElement(
+                            _reactNative.Text,
+                            { style: { color: 'white', lineHeight: 100 }, __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 141
+                                }
+                            },
+                            '\u4F60\u6765\u6478\u6211\u554A'
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+    return ResponderView;
+}(_react.Component);
+
+var AnimationGroupView = function (_React$Component3) {
+    babelHelpers.inherits(AnimationGroupView, _React$Component3);
+
+    function AnimationGroupView() {
+        var _ref3;
+
+        var _temp3, _this5, _ret3;
+
+        babelHelpers.classCallCheck(this, AnimationGroupView);
+
+        for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+            args[_key3] = arguments[_key3];
+        }
+
+        return _ret3 = (_temp3 = (_this5 = babelHelpers.possibleConstructorReturn(this, (_ref3 = AnimationGroupView.__proto__ || Object.getPrototypeOf(AnimationGroupView)).call.apply(_ref3, [this].concat(args))), _this5), _this5.state = {
+            bounceValue: new _reactNative.Animated.Value(0),
+            rotationA: new _reactNative.Animated.Value(0)
+        }, _temp3), babelHelpers.possibleConstructorReturn(_this5, _ret3);
+    }
+
+    babelHelpers.createClass(AnimationGroupView, [{
+        key: 'animate',
+        value: function animate() {
+            var _this6 = this;
+
+            this.state.rotationA.setValue(0);
+            _reactNative.Animated.timing(this.state.rotationA, {
+                toValue: 360,
+                duration: 800,
+                easing: _reactNative.Easing.linear }).start(function () {
+                return _this6.animate();
+            });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this7 = this;
+
+            this.state.bounceValue.setValue(3);
+            var dec = _reactNative.Animated.decay(this.state.rotationA, {
+                toValue: 360,
+                velocity: 1,
+                deceleration: 0.999,
+                duration: 3000
+            });
+            var spr = _reactNative.Animated.spring;
+            _reactNative.Animated.parallel([spr(this.state.bounceValue, {
+                toValue: 0.8,
+                friction: 1,
+                duration: 5000
+            }), dec]).start(function () {
+                return _this7.animate();
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            return _react2.default.createElement(
+                _reactNative.Animated.View,
+                {
+                    style: babelHelpers.extends({}, this.props.style, {
+                        transform: [{ scale: this.state.bounceValue }, { rotate: this.state.rotationA.interpolate({
+                                inputRange: [0, 360],
+                                outputRange: ['0deg', '360deg']
+                            }) }]
+
+                    }),
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 199
+                    }
+                },
+                this.props.children
+            );
+        }
+    }]);
+    return AnimationGroupView;
+}(_react2.default.Component);
+
+var LKLayoutView = function (_Component2) {
+    babelHelpers.inherits(LKLayoutView, _Component2);
 
     function LKLayoutView(props) {
         babelHelpers.classCallCheck(this, LKLayoutView);
 
-        var _this3 = babelHelpers.possibleConstructorReturn(this, (LKLayoutView.__proto__ || Object.getPrototypeOf(LKLayoutView)).call(this, props));
+        var _this8 = babelHelpers.possibleConstructorReturn(this, (LKLayoutView.__proto__ || Object.getPrototypeOf(LKLayoutView)).call(this, props));
 
-        _this3.state = {
+        _this8.state = {
             w: 200,
             h: 20,
             showNewOne: false
         };
-        return _this3;
+        return _this8;
     }
 
     babelHelpers.createClass(LKLayoutView, [{
@@ -72310,21 +72514,21 @@ var LKLayoutView = function (_Component) {
                 _reactNative.View,
                 { style: babelHelpers.extends({}, this.props.style), __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 107
+                        lineNumber: 259
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.View,
                     { style: { backgroundColor: 'yellow', width: this.state.w, height: this.state.h }, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 108
+                            lineNumber: 260
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: { textAlign: 'center', lineHeight: this.state.h }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 109
+                                lineNumber: 261
                             }
                         },
                         '\u8FD9\u4E2A\u662F\u73B0\u6210\u7684'
@@ -72334,14 +72538,14 @@ var LKLayoutView = function (_Component) {
                     _reactNative.View,
                     { style: { backgroundColor: 'purple', width: this.state.w, height: this.state.h }, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 112
+                            lineNumber: 264
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: { textAlign: 'center', lineHeight: this.state.h }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 113
+                                lineNumber: 265
                             }
                         },
                         '\u8FD9\u4E2A\u662F\u65B0\u6DFB\u52A0\u7684'
@@ -72351,21 +72555,21 @@ var LKLayoutView = function (_Component) {
                     _reactNative.TouchableOpacity,
                     { onPress: this.pressAction.bind(this), __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 117
+                            lineNumber: 269
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.View,
                         { style: { width: 100, height: 50, backgroundColor: 'black' }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 118
+                                lineNumber: 270
                             }
                         },
                         _react2.default.createElement(
                             _reactNative.Text,
                             { style: { color: 'white', textAlign: 'center', lineHeight: 50 }, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 119
+                                    lineNumber: 271
                                 }
                             },
                             '\u70B9\u51FB\u5F00\u59CB'
@@ -72378,42 +72582,43 @@ var LKLayoutView = function (_Component) {
     return LKLayoutView;
 }(_react.Component);
 
-var LKChangePropsView = function (_Component2) {
-    babelHelpers.inherits(LKChangePropsView, _Component2);
+var _s = {
+    w: 200,
+    h: 20
+};
+
+var LKChangePropsView = function (_Component3) {
+    babelHelpers.inherits(LKChangePropsView, _Component3);
 
     function LKChangePropsView(props) {
         babelHelpers.classCallCheck(this, LKChangePropsView);
 
-        var _this4 = babelHelpers.possibleConstructorReturn(this, (LKChangePropsView.__proto__ || Object.getPrototypeOf(LKChangePropsView)).call(this, props));
+        var _this9 = babelHelpers.possibleConstructorReturn(this, (LKChangePropsView.__proto__ || Object.getPrototypeOf(LKChangePropsView)).call(this, props));
 
-        _this4.state = {
+        _this9.state = {
             w: 200,
-            h: 20,
-            showNewOne: false
+            h: 20
         };
-        return _this4;
+        return _this9;
     }
 
     babelHelpers.createClass(LKChangePropsView, [{
         key: 'pressAction',
         value: function pressAction() {
-            var thisPage = this;
+            var _this10 = this;
 
-            _reactNative.LayoutAnimation.configureNext({
-                duration: 1200,
-                create: {
-                    type: 'linear',
-                    property: 'opacity' },
-                update: {
-                    type: 'spring',
-                    springDamping: 0.4 }
-            });
+            var count = 0;
             if (this.state.h < 100) {
-                thisPage.setState({
-                    w: this.state.w + 30,
-                    h: this.state.h + 30,
-                    showNewOne: true
-                });
+                while (count++ < 30) {
+                    requestAnimationFrame(function () {
+                        _this10.refs.view.setNativeProps({
+                            style: {
+                                width: ++_s.w,
+                                height: ++_s.h
+                            }
+                        });
+                    });
+                }
             }
         }
     }, {
@@ -72424,62 +72629,45 @@ var LKChangePropsView = function (_Component2) {
                 _reactNative.View,
                 { style: babelHelpers.extends({}, this.props.style), __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 170
+                        lineNumber: 318
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.View,
-                    { style: { backgroundColor: 'yellow', width: this.state.w, height: this.state.h }, __source: {
+                    { ref: 'view', style: { backgroundColor: 'yellow', width: 200, height: 20, justifyContent: 'center' }, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 171
+                            lineNumber: 319
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
-                        { style: { textAlign: 'center', lineHeight: this.state.h }, __source: {
+                        { style: { textAlign: 'center', backgroundColor: 'pink' }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 172
+                                lineNumber: 320
                             }
                         },
                         '\u8FD9\u4E2A\u662F\u73B0\u6210\u7684'
                     )
                 ),
-                this.state.showNewOne ? _react2.default.createElement(
-                    _reactNative.View,
-                    { style: { backgroundColor: 'purple', width: this.state.w, height: this.state.h }, __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 175
-                        }
-                    },
-                    _react2.default.createElement(
-                        _reactNative.Text,
-                        { style: { textAlign: 'center', lineHeight: this.state.h }, __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 176
-                            }
-                        },
-                        '\u8FD9\u4E2A\u662F\u65B0\u6DFB\u52A0\u7684'
-                    )
-                ) : null,
                 _react2.default.createElement(
                     _reactNative.TouchableOpacity,
                     { onPress: this.pressAction.bind(this), __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 180
+                            lineNumber: 323
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.View,
                         { style: { width: 100, height: 50, backgroundColor: 'black' }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 181
+                                lineNumber: 324
                             }
                         },
                         _react2.default.createElement(
                             _reactNative.Text,
                             { style: { color: 'white', textAlign: 'center', lineHeight: 50 }, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 182
+                                    lineNumber: 325
                                 }
                             },
                             '\u70B9\u51FB\u5F00\u59CB'
@@ -72492,16 +72680,16 @@ var LKChangePropsView = function (_Component2) {
     return LKChangePropsView;
 }(_react.Component);
 
-var LKAnimation = function (_Component3) {
-    babelHelpers.inherits(LKAnimation, _Component3);
+var LKAnimation = function (_Component4) {
+    babelHelpers.inherits(LKAnimation, _Component4);
 
     function LKAnimation(props) {
         babelHelpers.classCallCheck(this, LKAnimation);
 
-        var _this5 = babelHelpers.possibleConstructorReturn(this, (LKAnimation.__proto__ || Object.getPrototypeOf(LKAnimation)).call(this, props));
+        var _this11 = babelHelpers.possibleConstructorReturn(this, (LKAnimation.__proto__ || Object.getPrototypeOf(LKAnimation)).call(this, props));
 
-        _this5.state = {};
-        return _this5;
+        _this11.state = {};
+        return _this11;
     }
 
     babelHelpers.createClass(LKAnimation, [{
@@ -72513,23 +72701,23 @@ var LKAnimation = function (_Component3) {
 
             return _react2.default.createElement(
                 _reactNative.ScrollView,
-                { style: styles.background, contentContainerStyle: { flex: 1, alignItems: 'center', flexDirection: "column" }, __source: {
+                { style: styles.background, contentContainerStyle: { alignItems: 'center', flexDirection: "column" }, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 217
+                        lineNumber: 360
                     }
                 },
                 _react2.default.createElement(
                     FadeInView,
                     { style: { width: 250, height: 50, backgroundColor: 'powderblue' }, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 218
+                            lineNumber: 361
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: { fontSize: 28, textAlign: 'center', margin: 10 }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 219
+                                lineNumber: 362
                             }
                         },
                         'Fading in'
@@ -72539,22 +72727,44 @@ var LKAnimation = function (_Component3) {
                     ScringView,
                     { style: { width: 250, height: 50, backgroundColor: 'powderblue' }, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 221
+                            lineNumber: 364
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: { fontSize: 28, textAlign: 'center', margin: 10 }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 222
+                                lineNumber: 365
                             }
                         },
                         'Fading in'
                     )
                 ),
+                _react2.default.createElement(
+                    AnimationGroupView,
+                    { style: { marginTop: 100, width: 250, height: 50, backgroundColor: 'powderblue' }, __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 367
+                        }
+                    },
+                    _react2.default.createElement(
+                        _reactNative.Text,
+                        { style: { fontSize: 28, textAlign: 'center', margin: 10 }, __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 368
+                            }
+                        },
+                        '\u6211\u65CB\u8F6C\u4E86\u5417?'
+                    )
+                ),
+                _react2.default.createElement(ResponderView, { style: { marginTop: 100 }, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 370
+                    }
+                }),
                 _react2.default.createElement(LKLayoutView, { style: { marginTop: 20 }, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 224
+                        lineNumber: 371
                     }
                 })
             );
@@ -72611,7 +72821,7 @@ var styles = _reactNative.StyleSheet.create({
     }
 
 });
-}, 735, null, "KevinReactNativeProject/Study/LKAnimation.js");
+}, 734, null, "KevinReactNativeProject/Study/LKAnimation.js");
 __d(/* KevinReactNativeProject/Study/PhotoAndVideoSelct.js */function(global, require, module, exports) {'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -72623,7 +72833,7 @@ var _react = require(12     ); // 12 = react
 
 var _react2 = babelHelpers.interopRequireDefault(_react);
 
-var _MaterialIcons = require(737                                      ); // 737 = react-native-vector-icons/MaterialIcons
+var _MaterialIcons = require(736                                      ); // 736 = react-native-vector-icons/MaterialIcons
 
 var _MaterialIcons2 = babelHelpers.interopRequireDefault(_MaterialIcons);
 
@@ -72631,11 +72841,11 @@ var _reactNativeImagePicker = require(418                        ); // 418 = rea
 
 var _reactNativeImagePicker2 = babelHelpers.interopRequireDefault(_reactNativeImagePicker);
 
-var _reactNativeImageCropPicker = require(739                             ); // 739 = react-native-image-crop-picker
+var _reactNativeImageCropPicker = require(738                             ); // 738 = react-native-image-crop-picker
 
 var _reactNativeImageCropPicker2 = babelHelpers.interopRequireDefault(_reactNativeImageCropPicker);
 
-require(733                  ); // 733 = ../Public/Global.js
+require(739                  ); // 739 = ../Public/Global.js
 
 var _reactNative = require(45            ); // 45 = react-native
 
@@ -73290,7 +73500,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = PhotoAndVideoSelct;
-}, 736, null, "KevinReactNativeProject/Study/PhotoAndVideoSelct.js");
+}, 735, null, "KevinReactNativeProject/Study/PhotoAndVideoSelct.js");
 __d(/* react-native-vector-icons/MaterialIcons.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -73300,7 +73510,7 @@ var _createIconSet = require(563                    ); // 563 = ./lib/create-ico
 
 var _createIconSet2 = babelHelpers.interopRequireDefault(_createIconSet);
 
-var _MaterialIcons = require(738                             ); // 738 = ./glyphmaps/MaterialIcons.json
+var _MaterialIcons = require(737                             ); // 737 = ./glyphmaps/MaterialIcons.json
 
 var _MaterialIcons2 = babelHelpers.interopRequireDefault(_MaterialIcons);
 
@@ -73312,7 +73522,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 737, null, "react-native-vector-icons/MaterialIcons.js");
+}, 736, null, "react-native-vector-icons/MaterialIcons.js");
 __d(/* react-native-vector-icons/glyphmaps/MaterialIcons.json */function(global, require, module, exports) {module.exports = module.exports = {
   "3d-rotation": 59469,
   "ac-unit": 60219,
@@ -74247,7 +74457,7 @@ __d(/* react-native-vector-icons/glyphmaps/MaterialIcons.json */function(global,
   "zoom-out": 59648,
   "zoom-out-map": 58731
 };
-}, 738, null, "react-native-vector-icons/glyphmaps/MaterialIcons.json");
+}, 737, null, "react-native-vector-icons/glyphmaps/MaterialIcons.json");
 __d(/* react-native-image-crop-picker/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -74259,7 +74469,7 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 var _reactNative = require(45            ); // 45 = react-native
 
 exports.default = _reactNative.NativeModules.ImageCropPicker;
-}, 739, null, "react-native-image-crop-picker/index.js");
+}, 738, null, "react-native-image-crop-picker/index.js");
 __d(/* KevinReactNativeProject/Public/Global.js */function(global, require, module, exports) {var _reactNative = require(45            ); // 45 = react-native
 
 var _Dimensions$get = _reactNative.Dimensions.get('window'),
@@ -74289,7 +74499,7 @@ global.platform = Platform;
 global.backgroundColor = '#f6f6f6';
 
 global.sepLineColor = '#e6e6e6';
-}, 733, null, "KevinReactNativeProject/Public/Global.js");
+}, 739, null, "KevinReactNativeProject/Public/Global.js");
 ;require(146);
 ;require(0);
 //# sourceMappingURL=index.ios.map
