@@ -11,8 +11,10 @@ import { AppRegistry, Text, View, Button, Alert,Image,ScrollView, StyleSheet } f
 // import {StackNavigator} from 'react-navigation';
 import ImagePicker from 'react-native-image-picker';
 import HttpClient from '../Public/HttpClient';
+import ActionSheeter from 'kevin-action-sheet';
 
 var home = require('react-native').NativeModules.HomeViewController;
+var sheeter = require('react-native').NativeModules.RNActioinSheetIOS;
 
 export default class KevinReactNativeProject extends Component {
     static navigationOptions = {
@@ -36,13 +38,24 @@ export default class KevinReactNativeProject extends Component {
 
     onEditAction() {
         Alert.alert(
-      '我是一个标题',
-    '这是标题的内容文案，你可以写很多字',
-    [
-    {text: '确定', onPress: () => console.log('OK Pressed')},
-    {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-     ]
-     )
+          '我是一个标题',
+          '这是标题的内容文案，你可以写很多字',
+            [
+            {text: '确定', onPress: () => console.log('OK Pressed')},
+            {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            ]
+        )
+    }
+
+    showPopList() {
+        // console.log('====='+ActionSheeter);
+        ActionSheeter.showPopList(['中国','美国','日本','新加坡'], response=>{
+            if (response.didCancel) {
+                Alert.alert('取消了');
+            }else {
+                Alert.alert('您选择了第 '+(response.index+1)+' 个，名称：'+response.item);
+            }
+        });
     }
 
     render() {
@@ -57,6 +70,10 @@ export default class KevinReactNativeProject extends Component {
                 <Button
                  onPress={() => this.study()}
                  title="学习更多"
+                />
+                <Button
+                 onPress={() => this.showPopList()}
+                 title="自定义ActionSheet"
                 />
                 <Text style={styles.textStyle}>我们使用两种数据来控制一个组件：props和state。props是在父组件中指定，
                 而且一经指定，在被指定的是的分公司电饭锅水电费组件的生命周期中则不再改
