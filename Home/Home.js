@@ -11,10 +11,8 @@ import { AppRegistry, Text, View, Button, Alert,Image,ScrollView, StyleSheet } f
 // import {StackNavigator} from 'react-navigation';
 import ImagePicker from 'react-native-image-picker';
 import HttpClient from '../Public/HttpClient';
-import ActionSheeter from 'kevin-action-sheet';
 
 var home = require('react-native').NativeModules.HomeViewController;
-var sheeter = require('react-native').NativeModules.RNActioinSheetIOS;
 
 export default class KevinReactNativeProject extends Component {
     static navigationOptions = {

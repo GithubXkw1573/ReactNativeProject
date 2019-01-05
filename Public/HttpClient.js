@@ -8,13 +8,15 @@ desc: 网络请求基类
 
 import DeviceInfo from 'react-native-device-info';
 
-import {Alert} from 'react-native';
+import {Alert, AsyncStorage} from 'react-native';
 
 let instance = null;
 
 const baseUrl = 'http://service.wowoshenghuo.com';
 
 var name = '';
+
+var userToken = '-1';
 
 var header = {
 	'Content-Type' : 'application/json;charset=UTF-8',
@@ -23,8 +25,6 @@ var header = {
 	'model' : DeviceInfo.getDeviceName(),
 	'imei' : DeviceInfo.getUniqueID(),
 	'brand' : DeviceInfo.getBrand(),
-	'user_token' : '-1',
-	'userToken' : '-1',
 }
 
 export default class HttpClientManager {
@@ -54,9 +54,22 @@ export default class HttpClientManager {
 	getName() {
 		return this.name;
 	}
+	
+
+	async readToken(){
+		// header.user_token = '-1';
+  //       header.userToken = '-1';
+        let result = await AsyncStorage.getItem('userInfo');
+        if (result !== null) {
+        	let userToken = JSON.parse(result).userToken;
+            header.user_token = userToken;
+            header.userToken = userToken;
+        }
+    }
 
 	//网络请求
-	request(url, params) {
+	async request(url, params) {
+		await this.readToken();
 		return new Promise(function(resolve, reject){
 			let fullUrl = baseUrl + url;
 			fetch(fullUrl, {

@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Loading} from '../Public/Loading';
+import {Toast} from '../Public/Toast';
 import HttpClient from '../Public/HttpClient';
 import '../Public/Global.js';
 import md5 from "react-native-md5";
@@ -15,6 +16,7 @@ import {
   Button,
   Alert,
   TouchableHighlight,
+  AsyncStorage,
 } from 'react-native';
 
 let btnWidth = global.screen.width-80;
@@ -49,47 +51,50 @@ class loginwowo extends Component {
 	}
 
 	requestLogin() {
-      var self = this;
+		Loading.show();
+      	var self = this;
     	var httpManager = HttpClient.shareInstance();
+    	//md5加密
+    	let md5_pwd = md5.hex_md5(this.state.password).toUpperCase();
          var param = {
             loginName : this.state.account,
-            loginValue : this.state.password,
+            loginValue : md5_pwd,
             loginType : '1',
         };
         httpManager.request('/user/login/doLogin', param)
         .then(function(response){
         	 Loading.hidden();
            if (response.success) {
-              let newList = self.state.data;
-              if (loadMore) {
-                newList = newList.concat(response.data.list);
-              }else {
-                newList = response.data.list;
-              }
-              self.setState({
-                data:newList,
-                isRefreshing:false,
-                showFoot: response.data.list.length < 10 ? 1 : 0,
-              });
+           	  Toast.showSuccess('登陆成功');
+           	  //登陆成功后，保存登陆账户信息到本机
+           	  AsyncStorage.setItem('userInfo',JSON.stringify(response.data),(error)=>{
+           	 //  	if (error) {
+             //    	alert('存储失败');
+            	// } else  {
+             //    	alert('存储成功');
+            	// }
+           	  });
+           }else {
+           	  Alert.alert(response.message);
            }
         })
         .catch(function(response){
         	 Loading.hidden();
             let failMsg = response.message.length > 0 ? response.message : '系统繁忙，请稍后再试~';
-            Toast.showError(failMsg);
+            Alert.alert(failMsg);
         });
     }
 
   render() {
     return (
       <View style={styles.container}>
-      	<Text style={styles.titleStyle}>登陆</Text>
+      	<Text style={styles.titleStyle}>蜗蜗生活</Text>
       	<View style={styles.inputRowStyle}>
       		<Icon name ='account-circle' color='gray' size={24} />
       		<TextInput clearButtonMode={'while-editing'}
-      				   placeholder='请输入登陆账号'
+      				   placeholder='请输入手机号码'
       				   placeholderTextColor={'#c7c7cd'}
-      				   keyboardType={'numbers-and-punctuation'}
+      				   keyboardType={'number-pad'}
       				   maxLength={25}
       				   returnKeyType={'next'}
       				   autoCorrect={false}
