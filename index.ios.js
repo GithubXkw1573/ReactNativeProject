@@ -17,6 +17,7 @@ import TextInput from './Study/TextInput';
 import LKLocation from './Study/LKLocation';
 import LKAnimation from './Study/LKAnimation';
 import PhotoAndVideoSelct from './Study/PhotoAndVideoSelct';
+import LoginWowo from './Study/loginwowo';
 import {StackNavigator} from 'react-navigation';
 import './Public/Global.js';
 
@@ -55,6 +56,9 @@ const KevinReactNativeProject = StackNavigator({
     },
     PhotoAndVideoSelct: {
         screen:PhotoAndVideoSelct,
+    },
+    LoginWowo: {
+        screen:LoginWowo,
     },
 },
 {

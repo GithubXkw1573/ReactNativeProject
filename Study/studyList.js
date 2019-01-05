@@ -40,6 +40,8 @@ export default class studyList extends Component {
             navigate('LKAnimation')
         }else if(id === 5) {
             navigate('PhotoAndVideoSelct');
+        }else if(id === 7) {
+            navigate('LoginWowo');
         }
         else {
             Alert.alert('点击行:'+id);
