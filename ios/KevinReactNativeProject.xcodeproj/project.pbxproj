@@ -25,7 +25,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		14724F1C217ED44F00853B08 /* MovieListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14724F1B217ED44F00853B08 /* MovieListController.m */; };
 		14724F38217EEBDD00853B08 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14724F37217EEBDD00853B08 /* HomeViewController.m */; };
-		14FD858921D372F90050C593 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 14FD858821D372F90050C593 /* main.jsbundle */; };
+		148783892225131D0001F361 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 148783882225131D0001F361 /* main.jsbundle */; };
 		14FE992F21DF2E60005A5CA1 /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE992E21DF2E60005A5CA1 /* RSKImageCropper.framework */; };
 		14FE993021DF2E60005A5CA1 /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE992E21DF2E60005A5CA1 /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14FE993221DF2E6B005A5CA1 /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE993121DF2E6B005A5CA1 /* QBImagePicker.framework */; };
@@ -333,7 +333,7 @@
 		14724F1B217ED44F00853B08 /* MovieListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListController.m; sourceTree = "<group>"; };
 		14724F36217EEBDD00853B08 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		14724F37217EEBDD00853B08 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		14FD858821D372F90050C593 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		148783882225131D0001F361 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		14FE98B121DF0D21005A5CA1 /* RNActioinSheetIOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNActioinSheetIOS.xcodeproj; path = "../node_modules/kevin-action-sheet/ios/RNActioinSheetIOS/RNActioinSheetIOS.xcodeproj"; sourceTree = "<group>"; };
 		14FE992E21DF2E60005A5CA1 /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FE993121DF2E6B005A5CA1 /* QBImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QBImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -482,7 +482,7 @@
 		13B07FAE1A68108700A75B9A /* KevinReactNativeProject */ = {
 			isa = PBXGroup;
 			children = (
-				14FD858821D372F90050C593 /* main.jsbundle */,
+				148783882225131D0001F361 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -1065,10 +1065,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14FD858921D372F90050C593 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				AB1AC7840D3549C0B480705A /* AntDesign.ttf in Resources */,
+				148783892225131D0001F361 /* main.jsbundle in Resources */,
 				3FEEC6725282405387A2E83A /* Entypo.ttf in Resources */,
 				1E541C31D83649B28AEFE5E6 /* EvilIcons.ttf in Resources */,
 				4AF1F710556D44A4AC8BA99B /* Feather.ttf in Resources */,

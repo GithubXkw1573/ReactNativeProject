@@ -29,17 +29,17 @@ export default class MoveCell extends Component {
         var item = this.props.item;
         return (
             <View >
-            <TouchableOpacity onPress={() => this.jumpToDetail(item.id)}>
-            <View style={styles.container}>
-            <Image style={styles.picStyle} source={{uri:item.picUrl}} />
-            <View style={styles.rightStyle}>
-             <Text style={styles.titleStyle}>{item.name}</Text>
-             <Text style={styles.scoreStyle}>{item.score}</Text>
-             <Text style={styles.descStyle} numberOfLines={2}>{item.desc}</Text>
-            </View>
-            </View>
-            <View style={styles.bottomLineStyle}/>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.jumpToDetail(item.id)}>
+                    <View style={styles.container}>
+                        <Image style={styles.picStyle} source={{uri:item.picUrl}} />
+                        <View style={styles.rightStyle}>
+                            <Text style={styles.titleStyle}>{item.name}</Text>
+                            <Text style={styles.scoreStyle}>{item.score}</Text>
+                            <Text style={styles.descStyle} numberOfLines={2}>{item.desc}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.bottomLineStyle}/>
+                </TouchableOpacity>
             </View>);
     }
 }
