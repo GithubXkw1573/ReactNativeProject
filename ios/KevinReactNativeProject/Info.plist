@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
-	<string>KevinReactNativeProject</string>
+	<string>ReactNative学习</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,32 +24,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>NSCameraUsageDescription</key>
-	<string>以便拍摄头像，拍摄视频，拍摄图片等使用</string>
-	<key>NSContactsUsageDescription</key>
-	<string>蜗蜗生活需要访问您的通讯录，以便您正常使用充值缴费等服务，并不会保存您的通讯录内容</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>蜗蜗生活将访问您的位置，为您推荐附近的商家，提供更优质的服务</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>用于拍摄视频时访问麦克风收录视频声音</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>请开启相册权限，开启后才可以保存图片</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>以便上传头像，上传视频，发布服务等使用</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -63,6 +37,18 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>以便拍摄头像，拍摄视频，拍摄图片等使用</string>
+	<key>NSContactsUsageDescription</key>
+	<string>蜗蜗生活需要访问您的通讯录，以便您正常使用充值缴费等服务，并不会保存您的通讯录内容</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>蜗蜗生活将访问您的位置，为您推荐附近的商家，提供更优质的服务</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>用于拍摄视频时访问麦克风收录视频声音</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>请开启相册权限，开启后才可以保存图片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>以便上传头像，上传视频，发布服务等使用</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -81,5 +67,19 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
