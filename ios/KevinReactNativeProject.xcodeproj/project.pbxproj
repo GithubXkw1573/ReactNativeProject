@@ -30,7 +30,6 @@
 		14FE993021DF2E60005A5CA1 /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE992E21DF2E60005A5CA1 /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14FE993221DF2E6B005A5CA1 /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE993121DF2E6B005A5CA1 /* QBImagePicker.framework */; };
 		14FE993321DF2E6B005A5CA1 /* QBImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE993121DF2E6B005A5CA1 /* QBImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14FE996721DF593A005A5CA1 /* libRNActioinSheetIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE98D221DF0D21005A5CA1 /* libRNActioinSheetIOS.a */; };
 		1E541C31D83649B28AEFE5E6 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D795122A8472498E8552D510 /* EvilIcons.ttf */; };
 		368BA1ED334341CCBC461285 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4BAAEEACB574EBE8C6FEB85 /* MaterialCommunityIcons.ttf */; };
 		393DF8172E4C4465A819AFCC /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A083DCA388B940C4AE64F2F9 /* MaterialIcons.ttf */; };
@@ -376,7 +375,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14FE996721DF593A005A5CA1 /* libRNActioinSheetIOS.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -736,6 +734,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
